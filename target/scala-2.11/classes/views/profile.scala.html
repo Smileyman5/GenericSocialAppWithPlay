@@ -1,0 +1,72 @@
+@()
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Profile</title>
+<style>
+ul {
+  list-style-type: none;
+  padding-left:0;
+  display: inline;
+}
+</style>
+
+<script>
+window.onload = function WindowLoad(event) {
+    getProfile();
+}
+
+function getProfile(s) {
+	let req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (req.readyState == 4 && req.status == 200) {
+        	var res = JSON.parse(req.responseText);
+        	document.getElementById('con').innerHTML = res.conFriends;
+        	document.getElementById('pen').innerHTML = res.penFriends;
+        	document.getElementById('req').innerHTML = res.reqFriends;
+        	document.getElementById('names').innerHTML = res.message;
+        }
+    };
+    req.open("GET", "http://localhost:9000/restful/profile?username=" 
+    		+ sessionStorage.getItem('username') + "&name=" 
+    		+ s, true);
+    req.send(null);
+}
+
+function updateFriends(user, request) {
+	let req = new XMLHttpRequest();
+    req.onreadystatechange = function() {
+        if (req.readyState == 4 && req.status == 200) {
+        	getProfile("");
+        }
+    }
+    req.open(request, "http://localhost:9000/friends/"
+    		+ sessionStorage.getItem('username')
+    		+ "/" + user, true);
+    req.send(null);
+}
+
+</script>
+</head>
+<body>
+<div id="con"></div>
+<div id="pen"></div>
+<div id="req"></div>
+ <form >
+ Search for a name: <input type="text" name="user" id="user"><br>
+</form>
+<button onclick="getProfile(document.getElementById('user').value)">Submit</button>
+<div id="names"></div>
+<br/>
+<form action="compare" method="get">
+	<input type="submit" value="Friend Recommendations"/>
+</form>
+<br>
+<br>
+<form action="" method="get">
+	<input type="submit" value="Logout" onclick="form.method='GET';form.action='@routes.LoginController.displayPage';"/>
+</form>
+</body>
+</html>

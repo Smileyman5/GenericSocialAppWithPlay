@@ -1,0 +1,65 @@
+@()
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Login</title>        
+        <script>
+        function login() {
+            let req = new XMLHttpRequest();
+            req.onreadystatechange = function() {
+                if (req.readyState == 4 && req.status == 200) {
+                	var res = JSON.parse(req.responseText);
+                	if (res.criteria) {
+                		document.getElementById('message').innerHTML = "<font color=\"red\">Some fields are not filled</font><br><br>";
+                	}
+                	else if (res.failed) {
+                		document.getElementById('message').innerHTML = "<font color=\"red\">Username/Password is incorrect</font><br><br>";
+                	}
+                	else if (res.loggedin) {
+                		updateStats();
+                	}
+                }
+            };
+            req.open("POST", "http://localhost:9000/login/" + document.getElementById("username").value + "/" + document.getElementById("password").value, true);
+            let data =
+            {
+                "username": document.getElementById("username").value,
+                "password": document.getElementById("password").value
+            };
+            req.send(null);
+        }
+        
+        function updateStats() {
+        	let req = new XMLHttpRequest();
+            req.onreadystatechange = function() {
+                if (req.readyState == 4 && req.status == 200) {
+                	sessionStorage.setItem('username', document.getElementById("username").value);
+                	window.location.href = "http://localhost:9000/profile";
+                }
+            };
+            req.open("POST", "http://localhost:9000/stats/" + document.getElementById("username").value, true);
+            let data =
+            {
+                "username": document.getElementById("username").value
+            };
+            req.send(null);
+        }
+        
+        function register() {
+        	window.location.href = "http://localhost:9000/register";
+        }
+        </script>
+    </head>
+    <body>
+	<fieldset>
+	<legend>Login</legend>
+	<div id="message"></div>
+	Username: <input type="text" id="username" name="username"/> <br /><br />
+	Password:  	<input type="password" id="password" name="password"/><br /><br />
+	</fieldset>
+	<button onclick="login()">Login</button>
+	<button onclick="register()">Register</button>
+      
+    </body>
+</html>

@@ -1,0 +1,16 @@
+[error] C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\app\assets\js\materialize.js:55: ['jswing'] is better written in dot notation.
+[error] jQuery.easing['jswing'] = jQuery.easing['swing'];
+[error]              ^
+[error] C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\app\assets\js\materialize.js:55: ['swing'] is better written in dot notation.
+[error] jQuery.easing['jswing'] = jQuery.easing['swing'];
+[error]                                        ^
+[error] C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\app\assets\js\materialize.js:114: Use '===' to compare with '0'.
+[error] 		return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+[error] 		               ^
+[error] C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\app\assets\js\materialize.js:137: A leading decimal point can be confused with a dot: '.3'.
+[error] 		if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+[error] 		                                                                ^
+[error] C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\app\assets\js\materialize.js:138: 's' is already defined.
+[error] 		if (a < Math.abs(c)) { a=c; var s=p/4; }
+[error] 		                                       ^
+[error] 87 errors found

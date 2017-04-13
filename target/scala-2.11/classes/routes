@@ -1,0 +1,56 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Login using a username and password
+# GET is type of command				controllers.SomeController.method_called
+GET		/							    controllers.LoginController.displayPage
+
+POST 	/login/:username/:password	    controllers.LoginController.login(username, password)
+
+POST 	/stats/:username			    controllers.StatController.updateStats(username)
+
+# Profile
+GET 	/profile					    controllers.ProfileController.displayPage
+
+GET 	/restful/profile			    controllers.ProfileController.getProfile
+
+GET 	/restful/json/profile/:username	controllers.ProfileController.getProfileJson(username: String)
+
+# Friends
+GET 	/friends/:username              controllers.FriendController.displayPage(username)
+
+POST 	/friends/:username/:name	    controllers.FriendController.addFriend(username, name)
+
+PUT 	/friends/:username/:name	    controllers.FriendController.acceptRequest(username, name)
+
+DELETE 	/friends/:username/:name	    controllers.FriendController.deleteRequest(username, name)
+
+# Posts
+POST    /post                           controllers.PostController.post
+
+GET     /posts/:username                controllers.PostController.getPostsByName(username: String)
+
+GET     /posts/ids/:id                  controllers.PostController.getPostById(id: Int)
+
+GET     /posts/friends/:username        controllers.PostController.getPostsByFriends(username: String)
+
+GET     /posts/all/:username            controllers.PostController.getAllPostsByName(username: String)
+
+# Search
+GET     /search                         controllers.SearchController.displayPage
+
+GET     /restful/search/:name           controllers.SearchController.getJson(name: String)
+
+# Register
+GET     /register                       controllers.RegisterController.displayPage
+
+POST    /register                       controllers.RegisterController.register
+
+# FriendRecommendator
+GET     /recommend/:name                controllers.FriendRecController.getHtml(name : String)
+
+GET     /restful/recommend/:name        controllers.FriendRecController.getJson(name : String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

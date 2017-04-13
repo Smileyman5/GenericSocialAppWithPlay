@@ -1,0 +1,7 @@
+@(elements: helper.FieldElements)
+
+<label for='@elements.id'>@elements.label</label>
+@elements.input
+@if(elements.hasErrors){
+    <p style="color: red">*@elements.errors</p>
+}

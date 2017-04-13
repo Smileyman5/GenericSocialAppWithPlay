@@ -1,0 +1,7 @@
+[debug] Copy resource mappings: 
+[debug] 	(C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\conf\application.conf,C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\target\scala-2.11\classes\application.conf)
+[debug] 	(C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\conf\evolutions,C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\target\scala-2.11\classes\evolutions)
+[debug] 	(C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\conf\logback.xml,C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\target\scala-2.11\classes\logback.xml)
+[debug] 	(C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\conf\routes,C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\target\scala-2.11\classes\routes)
+[debug] 	(C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\conf\evolutions\default,C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\target\scala-2.11\classes\evolutions\default)
+[debug] 	(C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\conf\evolutions\default\1.sql,C:\Users\alex\Coding\CSC435\SocialAppRepo\PlayGSA\target\scala-2.11\classes\evolutions\default\1.sql)

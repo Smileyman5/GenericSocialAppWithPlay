@@ -1,0 +1,89 @@
+@(username: String)
+
+@headParts = {
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+    <script>
+        window.onload = function WindowLoad(event) {
+            getProfile();
+        }
+
+        function getProfile(s) {
+            let req = new XMLHttpRequest();
+            req.onreadystatechange = function() {
+                if (req.readyState == 4 && req.status == 200) {
+                    var res = JSON.parse(req.responseText);
+                    document.getElementById('con').innerHTML = res.conFriends;
+                    document.getElementById('pen').innerHTML = res.penFriends;
+                    document.getElementById('req').innerHTML = res.reqFriends;
+                    document.getElementById('names').innerHTML = res.message;
+                }
+            };
+            req.open("GET", "http://localhost:9000/restful/profile?username="
+                    + '@username' + "&name="
+                    + s, true);
+            req.send(null);
+        }
+
+        function updateFriends(user, request) {
+            let req = new XMLHttpRequest();
+            req.onreadystatechange = function() {
+                if (req.readyState == 4 && req.status == 200) {
+                    getProfile("");
+                }
+            }
+            req.open(request, "http://localhost:9000/friends/"
+                    + '@username'
+                    + "/" + user, true);
+            req.send(null);
+        }
+    </script>
+}
+
+@main("Friends", headParts)
+{
+    <div class="navbar-fixed">
+        <nav class="blue">
+            <div class="nav-wrapper">
+                <ul id="slide-out" class="right side-nav">
+                    <li><a href="#!">Friends</a></li>
+                    <li><a href="#!">Settings</a></li>
+                    <li><a href="@routes.LoginController.displayPage">Logout</a></li>
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#!">Friends</a></li>
+                    <li><a href="#!">Settings</a></li>
+                    <li><a href="@routes.LoginController.displayPage">Logout</a></li>
+                </ul>
+                <a href="#" data-activates="slide-out" class="button-collapse right"><i class="material-icons">menu</i></a>
+
+                <a href="#" class="brand-logo left">Welcome, @username!</a>
+            </div>
+        </nav>
+    </div>
+
+    <div id="con"></div>
+    <div id="pen"></div>
+    <div id="req"></div>
+
+    <form>
+        Search for a name: <input type="text" name="user" id="user"><br>
+    </form>
+    <button onclick="getProfile(document.getElementById('user').value)">Submit</button>
+
+    <div id="names"></div>
+    <br/>
+    <form action="compare" method="get">
+        <input type="submit" value="Friend Recommendations"/>
+    </form>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script>
+            $(document).ready(function () {
+                $('.button-collapse').sideNav();
+            })
+    </script>
+}
