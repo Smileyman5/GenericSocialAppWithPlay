@@ -8,7 +8,7 @@ public class FriendController extends Controller {
 
 	public Result displayPage(String username)
 	{
-		// La dee da da La de da da!!!
+		// La dee da da La de da da!!! Do dah!
 		return ok(views.html.friends.render(username));
 	}
 
